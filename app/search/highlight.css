@@ -1,0 +1,16 @@
+.highlight {
+  display: inline-block;               
+  padding: 0 .25rem;                   
+  margin: 0 -.05rem;                   
+  border-radius: .35rem;
+  background: rgba(255, 107, 107, .8);
+  box-shadow: 0 0 0 2px rgba(255, 107, 107, .9) inset;
+  outline: 1px solid rgba(255, 107, 107, .35);
+  color: inherit;
+}
+
+.highlight:hover {
+  background: rgba(255, 107, 107, .26);
+  box-shadow: 0 0 0 2px rgba(255, 118, 118, .75) inset;
+  outline-color: rgba(255, 118, 118, .55);
+}
