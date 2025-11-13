@@ -1,35 +1,45 @@
-import './globals.css'
+'use client'
+
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import './globals.css'
 
-export const metadata = {
-  title: 'Manchu Text Project',
-  description: 'Digital Manchu Text Database',
-}
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  const [ready, setReady] = useState(false)
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    // Trigger animation on mount
+    setTimeout(() => setReady(true), 20)
+  }, [])
+
   return (
     <html lang="en">
       <body className="bg-black text-white">
-        {/* Sticky Navbar */}
-        <header className="w-full bg-black/90 border-b border-gray-800 px-4 py-2">
-          <div className="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        {/* Navigation Bar */}
+        <nav className="w-full px-6 py-4 bg-black/40 backdrop-blur-md border-b border-gray-800 flex justify-between items-center fixed top-0 left-0 z-50">
+          <Link href="/" className="text-2xl font-bold text-blue-400 hover:text-blue-300 transition">
+            Manchu Text Project
+          </Link>
 
-            {/* Left side (title) */}
-            <Link href="/" className="text-2xl font-bold text-blue-400">
-              Manchu Text Project
-            </Link>
-
-            {/* Right side (links) */}
-            <nav className="flex gap-6 text-gray-300 justify-center sm:justify-end text-lg">
-              <Link href="/" className="hover:text-blue-400 transition">Home</Link>
-              <Link href="/documents/id" className="hover:text-blue-400 transition">Gallery</Link>
-              <Link href="/search" className="hover:text-blue-400 transition">Search</Link>
-              <Link href="/translate" className="hover:text-blue-400 transition">Translate</Link>
-            </nav>
-
+          <div className="flex gap-6 text-lg">
+            <Link href="/" className="hover:text-blue-400 transition">Home</Link>
+            <Link href="/documents/id" className="hover:text-blue-400 transition">Gallery</Link>
+            <Link href="/search" className="hover:text-blue-400 transition">Search</Link>
+            <Link href="/translate" className="hover:text-blue-400 transition">Translate</Link>
           </div>
-        </header>
-        <main className="pt-20">{children}</main>
+        </nav>
+
+        {/* Page Fade Wrapper */}
+        <div className={`fade-wrapper ${ready ? 'ready' : ''}`}>
+          <div className="pt-24"> 
+            {/* Push content below navbar */}
+            {children}
+          </div>
+        </div>
       </body>
     </html>
   )
