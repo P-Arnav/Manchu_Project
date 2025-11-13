@@ -11,20 +11,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="bg-black text-white">
         {/* Sticky Navbar */}
-        <header className="fixed top-0 left-0 w-full bg-gray-950/90 backdrop-blur-md border-b border-gray-800 shadow-md z-50">
-          <div className="relative max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            {/* Left: Project Title */}
-            <Link href="/" className="text-xl font-bold text-blue-400">
+        <header className="w-full bg-black/90 border-b border-gray-800 px-4 py-4">
+          <div className="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+
+            {/* Left side (title) */}
+            <Link href="/" className="text-2xl font-bold text-blue-400">
               Manchu Text Project
             </Link>
 
-            {/* Center: Navigation */}
-            <nav className="absolute left-1/2 -translate-x-1/2 flex gap-8 text-gray-300">
+            {/* Right side (links) */}
+            <nav className="flex gap-6 text-gray-300 justify-center sm:justify-end text-lg">
               <Link href="/" className="hover:text-blue-400 transition">Home</Link>
-              <Link href="/documents/id" className="hover:text-blue-400 transition">Gallery</Link>
+              <Link href="/gallery" className="hover:text-blue-400 transition">Gallery</Link>
               <Link href="/search" className="hover:text-blue-400 transition">Search</Link>
               <Link href="/translate" className="hover:text-blue-400 transition">Translate</Link>
             </nav>
+
           </div>
         </header>
         <main className="pt-20">{children}</main>
