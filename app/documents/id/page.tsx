@@ -111,7 +111,7 @@ export default function ViewGallery() {
   )
 
   return (
-    <main className="p-8 bg-black text-white min-h-screen">
+    <main className="p-8 min-h-screen text-white bg-gradient-to-b from-[#001a3d] to-[#000814]">
       <h1 className="text-4xl font-bold text-center mb-8 text-blue-400">
         Manchu Text Gallery
       </h1>
@@ -154,7 +154,9 @@ export default function ViewGallery() {
             {tVisible.map((entry) => (
               <div
                 key={entry.id}
-                className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700 shadow hover:shadow-blue-500/30 transition relative group w-64"
+                className="rounded-xl overflow-hidden border border-blue-900/40 
+                          bg-blue-950/30 shadow-md hover:shadow-blue-500/40 
+                          transition duration-200 backdrop-blur-sm w-64"
               >
                 <button
                   onClick={() => setSelected(entry)}
@@ -163,7 +165,9 @@ export default function ViewGallery() {
                   <img
                     src={entry.image_url}
                     alt="Manchu manuscript"
-                    className="w-full aspect-square object-cover bg-black hover:opacity-90 transition"
+                    className="w-full aspect-square object-cover rounded-lg 
+                              border border-blue-900/50 shadow-sm hover:shadow-blue-500/20 
+                              transition"
                   />
                   <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 flex items-center justify-center text-gray-200 text-sm font-medium transition-opacity">
                     Click to view translation
@@ -190,18 +194,20 @@ export default function ViewGallery() {
                   return acc
                 }, {})
               )
-                .filter(([_, entries]) => entries.length > 1) // only shared sources
+                .filter(([_, entries]) => entries.length > 1) 
                 .map(([link, entries]) => (
                   <div
                     key={link}
-                    className="bg-gray-900 border border-gray-700 rounded-lg p-5 shadow hover:shadow-blue-500/20 transition"
+                    className="bg-blue-950/40 border border-blue-900 rounded-xl 
+                              p-6 shadow-lg hover:shadow-blue-500/30 
+                              transition backdrop-blur-sm"
                   >
                     {/* Source thumbnail (from source) */}
                     <div className="flex justify-center mb-4">
                       <img
                         src={link}
-                        alt="Shared source thumbnail"
-                        className="max-h-[250px] rounded-lg border border-gray-700 object-contain"
+                        alt="Source thumbnail"
+                        className="max-h-[220px] rounded-xl shadow border border-blue-900/50 object-contain"
                       />
                     </div>
 
@@ -231,13 +237,17 @@ export default function ViewGallery() {
             {uVisible.map((entry) => (
               <div
                 key={entry.id}
-                className="flex flex-col md:flex-row items-center md:items-start bg-gray-900 border border-gray-700 rounded-lg p-4 shadow hover:shadow-yellow-500/20 transition"
+                className="flex flex-col md:flex-row items-center md:items-start 
+                          bg-blue-950/40 border border-blue-900 rounded-xl 
+                          p-5 shadow-md hover:shadow-blue-500/20 
+                          transition backdrop-blur-sm"
               >
                 <div className="w-full md:w-1/2 flex justify-center">
                   <img
                     src={entry.image_url}
                     alt="Untranslated manuscript"
-                    className="rounded-lg object-contain max-h-[300px] bg-black"
+                    className="rounded-xl object-contain max-h-[300px] 
+                              border border-blue-900/40 shadow-sm"
                   />
                 </div>
                 <div className="w-full md:w-1/2 mt-4 md:mt-0 md:pl-6 text-center md:text-left">
@@ -272,7 +282,9 @@ export default function ViewGallery() {
           onClick={() => setSelected(null)}
         >
           <div
-            className="bg-gray-900 rounded-xl border border-gray-700 shadow-lg max-w-5xl w-full p-6 flex flex-col md:flex-row gap-6 overflow-y-auto max-h-[90vh]"
+            className="bg-blue-950/60 rounded-xl border border-blue-900 shadow-xl 
+            backdrop-blur-md max-w-5xl w-full p-6 
+            flex flex-col md:flex-row gap-6 overflow-y-auto max-h-[90vh]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="absolute top-4 left-0 right-0 text-center text-xl font-semibold text-blue-400">
@@ -283,7 +295,7 @@ export default function ViewGallery() {
               <img
                 src={selected.image_url}
                 alt="Manchu manuscript"
-                className="max-h-[80vh] w-auto object-contain rounded"
+                className="max-h-[80vh] w-auto rounded-lg shadow-lg border border-blue-900/50"
               />
             </div>
 

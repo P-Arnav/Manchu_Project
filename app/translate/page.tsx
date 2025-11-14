@@ -6,7 +6,9 @@ export default function TranslatePage() {
   const [text, setText] = useState('')
   const [output, setOutput] = useState({ latin: '', english: '', manchu: '' })
   const [loading, setLoading] = useState(false)
-  const [direction, setDirection] = useState<'manchu-to-english' | 'english-to-manchu'>('manchu-to-english')
+  const [direction, setDirection] = useState<
+    'manchu-to-english' | 'english-to-manchu'
+  >('manchu-to-english')
 
   async function handleTranslate() {
     if (!text.trim()) return alert('Please enter text first.')
@@ -85,8 +87,13 @@ export default function TranslatePage() {
   }
 
   return (
-    <main className="p-8 bg-black text-white min-h-screen">
-      <h1 className="text-3xl font-bold mb-6 text-center text-blue-400">
+    <main
+      className="
+        p-8 min-h-screen text-white 
+        bg-gradient-to-b from-[#006d77] via-[#004c53] to-[#002d32]
+      "
+    >
+      <h1 className="text-4xl font-bold mb-8 text-center text-teal-200 drop-shadow-lg">
         Manchu Translator
       </h1>
 
@@ -94,10 +101,19 @@ export default function TranslatePage() {
       <div className="flex justify-center mb-6">
         <select
           value={direction}
-          onChange={(e) =>
-            setDirection(e.target.value as 'manchu-to-english' | 'english-to-manchu')
+                    onChange={(e) => {
+            const newDir = e.target.value as 'manchu-to-english' | 'english-to-manchu'
+            setDirection(newDir)
+            setOutput({ latin: '', english: '', manchu: '' })
+            setText('')
+           }
           }
-          className="px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-600 focus:ring focus:ring-blue-500"
+          className="
+            px-4 py-2 rounded-md bg-[#003338]/80 text-white 
+            border border-teal-500/40 shadow-md 
+            hover:bg-[#004047]/80 transition 
+            focus:ring focus:ring-teal-400
+          "
         >
           <option value="manchu-to-english">Manchu → English + Latin</option>
           <option value="english-to-manchu">English → Manchu + Latin</option>
@@ -113,36 +129,60 @@ export default function TranslatePage() {
             ? 'Enter Manchu text here...'
             : 'Enter English text here...'
         }
-        className="w-full h-40 border border-gray-700 bg-gray-900 text-white p-4 rounded-md focus:ring focus:ring-blue-500"
+        className="
+          w-full h-40 p-4 text-white rounded-lg 
+          bg-[#00272d]/80 border border-teal-500/40 shadow 
+          focus:ring-2 focus:ring-teal-400 placeholder-gray-400
+        "
       />
 
+      {/* Translate button */}
       <button
         onClick={handleTranslate}
         disabled={loading}
-        className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md transition disabled:opacity-60"
+        className="
+          mt-4 bg-teal-600 hover:bg-teal-500 text-white 
+          px-5 py-2 rounded-lg shadow-lg transition 
+          disabled:opacity-60 cursor-pointer
+        "
       >
         {loading ? 'Translating…' : 'Translate'}
       </button>
 
       {/* Output Section */}
       {direction === 'manchu-to-english' && output.latin && (
-        <div className="mt-8 bg-gray-900 border border-gray-700 p-6 rounded-lg space-y-3">
+        <div
+          className="
+            mt-8 p-6 rounded-xl space-y-3 
+            bg-[#002b31]/70 border border-teal-500/40 
+            shadow-lg backdrop-blur
+          "
+        >
           <p>
-            <strong className="text-blue-400">Latin:</strong> {output.latin}
+            <strong className="text-teal-300 font-semibold">Latin:</strong>{' '}
+            {output.latin}
           </p>
           <p>
-            <strong className="text-green-400">English:</strong> {output.english}
+            <strong className="text-emerald-300 font-semibold">English:</strong>{' '}
+            {output.english}
           </p>
         </div>
       )}
 
       {direction === 'english-to-manchu' && output.manchu && (
-        <div className="mt-8 bg-gray-900 border border-gray-700 p-6 rounded-lg space-y-3">
+        <div
+          className="
+            mt-8 p-6 rounded-xl space-y-3 
+            bg-[#002b31]/70 border border-teal-500/40 
+            shadow-lg backdrop-blur
+          "
+        >
           <p className="text-3xl font-manchu leading-relaxed text-center text-white">
             {output.manchu}
           </p>
           <p>
-            <strong className="text-blue-400">Latin:</strong> {output.latin}
+            <strong className="text-teal-300 font-semibold">Latin:</strong>{' '}
+            {output.latin}
           </p>
         </div>
       )}
